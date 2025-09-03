@@ -1,7 +1,7 @@
 {
-  "name": "trex-runner-game",
+  "name": "dino-dash",
   "version": "1.0.0",
-  "description": "A T-Rex Runner game built with React and TypeScript",
+  "description": "DINO DASH - An epic dinosaur runner game built with React and TypeScript",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
@@ -19,7 +19,7 @@
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
   },
-  "keywords": ["game", "react", "typescript", "trex", "runner"],
+  "keywords": ["game", "react", "typescript", "dinosaur", "runner", "dino-dash", "adventure"],
   "author": "",
   "license": "MIT"
 }

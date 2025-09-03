@@ -1,6 +1,6 @@
-# T-Rex Runner Game
+# DINO DASH 🦖💨
 
-A fun and engaging T-Rex Runner game built with React and TypeScript, inspired by Chrome's offline dinosaur game!
+**An Epic Dinosaur Runner Adventure** built with React and TypeScript, inspired by Chrome's offline dinosaur game!
 
 ## 🎮 Game Features
 
@@ -139,8 +139,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 🎮 Have Fun!
 
-Enjoy playing the T-Rex Runner game! Try to beat your high score and challenge your friends. The game gets progressively harder, so stay focused and keep jumping!
+Enjoy playing DINO DASH! Try to beat your high score and challenge your friends. The game gets progressively harder, so stay focused and keep dashing through the prehistoric landscape!
 
 ---
 
-**Happy Gaming! 🦖🏃‍♂️**
+**Happy Dashing! 🦖💨🏃‍♂️**

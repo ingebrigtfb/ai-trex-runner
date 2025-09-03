@@ -57,13 +57,14 @@ function App() {
           onGameOver={() => {}}
         />
         <div className="start-screen">
-          <h1>T-Rex Runner</h1>
+          <h1>DINO DASH</h1>
+          <p className="tagline">Epic Dinosaur Adventure</p>
           <p>Welcome back, {currentUser}!</p>
           {currentHighScore > 0 && (
             <p className="high-score-display">Your High Score: {currentHighScore}</p>
           )}
           <p>Press SPACE or click to start the game!</p>
-          <button onClick={() => setGameStarted(true)}>Start Game</button>
+          <button onClick={() => setGameStarted(true)}>Start Adventure</button>
         </div>
       </div>
     )

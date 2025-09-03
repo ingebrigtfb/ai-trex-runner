@@ -97,7 +97,8 @@ const UserSystem: React.FC<UserSystemProps> = ({
     return (
       <div className="user-system">
         <div className="user-login">
-          <h2>Welcome to T-Rex Runner!</h2>
+          <h2>Welcome to DINO DASH!</h2>
+          <p className="tagline">Epic Dinosaur Adventure</p>
           <p>Enter your name to start playing</p>
           
           <form onSubmit={handleUserSubmit} className="user-form">
@@ -157,10 +158,10 @@ const UserSystem: React.FC<UserSystemProps> = ({
   return (
     <div className="user-system">
       <div className="user-info">
-        <span className="current-user">Playing as: <strong>{currentUser}</strong></span>
+                  <span className="current-user">Dino Runner: <strong>{currentUser}</strong></span>
         <div className="user-actions">
           <button onClick={handleUserChange} className="change-user-btn">
-            Change User
+            Change Runner
           </button>
           <button onClick={handleLogout} className="logout-btn">
             Logout
@@ -177,7 +178,7 @@ const UserSystem: React.FC<UserSystemProps> = ({
       {showUserInput && (
         <div className="user-input-modal">
           <div className="user-input-content">
-            <h3>Change User</h3>
+            <h3>Change Dino Runner</h3>
             <form onSubmit={handleUserSubmit} className="user-form">
               <input
                 type="text"
