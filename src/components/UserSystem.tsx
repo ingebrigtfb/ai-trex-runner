@@ -111,22 +111,22 @@ const UserSystem: React.FC<UserSystemProps> = ({
     return (
       <div className="user-system">
         <div className="user-login">
-          <h2>Welcome to DINO DASH!</h2>
-          <p className="tagline">Epic Dinosaur Adventure</p>
-          <p>Enter your name to start playing</p>
+          <h2>Velkommen til DINO DASH!</h2>
+          <p className="tagline">Episk Dinosaur Eventyr</p>
+          <p>Skriv inn navnet ditt for å starte å spille</p>
           
           <form onSubmit={handleUserSubmit} className="user-form">
             <input
               type="text"
               value={newUserName}
               onChange={(e) => setNewUserName(e.target.value)}
-              placeholder="Enter your name"
+              placeholder="Skriv inn navnet ditt"
               maxLength={20}
               required
               className="user-input"
             />
             <button type="submit" className="user-submit-btn">
-              Start Playing
+              Start å Spille
             </button>
           </form>
 
@@ -137,7 +137,7 @@ const UserSystem: React.FC<UserSystemProps> = ({
             }} 
             className="leaderboard-btn"
           >
-            🏆 View Leaderboard
+            🏆 Se Poengtavle
           </button>
 
           {showFirebaseLeaderboard && (
@@ -154,56 +154,56 @@ const UserSystem: React.FC<UserSystemProps> = ({
 
   return (
     <div className="user-system">
-      <div className="user-info">
-                  <span className="current-user">Dino Runner: <strong>{currentUser}</strong></span>
+              <div className="user-info">
+                  <span className="current-user">Dino Løper: <strong>{currentUser}</strong></span>
         <div className="user-actions">
           <button onClick={handleUserChange} className="change-user-btn">
-            Change Runner
+            Bytt Løper
           </button>
           <button onClick={handleLogout} className="logout-btn">
-            Logout
+            Logg Ut
           </button>
           <button 
             onClick={() => setShowFirebaseLeaderboard(true)} 
             className="leaderboard-btn"
             disabled={isGameActive}
-            title={isGameActive ? "Leaderboard not available during gameplay" : "View Leaderboard"}
+            title={isGameActive ? "Poengtavle ikke tilgjengelig under spillet" : "Se Poengtavle"}
           >
-            🏆 Leaderboard
+            🏆 Poengtavle
           </button>
         </div>
       </div>
 
-      {showUserInput && (
-        <div className="user-input-modal">
-          <div className="user-input-content">
-            <h3>Change Dino Runner</h3>
-            <form onSubmit={handleUserSubmit} className="user-form">
-              <input
-                type="text"
-                value={newUserName}
-                onChange={(e) => setNewUserName(e.target.value)}
-                placeholder="Enter new username"
-                maxLength={20}
-                required
-                className="user-input"
-              />
-              <div className="user-input-buttons">
-                <button type="submit" className="user-submit-btn">
-                  Change User
-                </button>
-                <button 
-                  type="button" 
-                  onClick={() => setShowUserInput(false)}
-                  className="cancel-btn"
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
+                      {showUserInput && (
+                  <div className="user-input-modal">
+                    <div className="user-input-content">
+                      <h3>Bytt Dino Løper</h3>
+                      <form onSubmit={handleUserSubmit} className="user-form">
+                        <input
+                          type="text"
+                          value={newUserName}
+                          onChange={(e) => setNewUserName(e.target.value)}
+                          placeholder="Skriv inn nytt brukernavn"
+                          maxLength={20}
+                          required
+                          className="user-input"
+                        />
+                        <div className="user-input-buttons">
+                          <button type="submit" className="user-submit-btn">
+                            Bytt Bruker
+                          </button>
+                          <button 
+                            type="button" 
+                            onClick={() => setShowUserInput(false)}
+                            className="cancel-btn"
+                          >
+                            Avbryt
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                )}
 
 
 

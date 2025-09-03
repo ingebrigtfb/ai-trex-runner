@@ -68,13 +68,13 @@ function App() {
         />
         <div className="start-screen">
           <h1>DINO DASH</h1>
-          <p className="tagline">Epic Dinosaur Adventure</p>
-          <p>Welcome back, {currentUser}!</p>
+          <p className="tagline">Episk Dinosaur Eventyr</p>
+          <p>Velkommen tilbake, {currentUser}!</p>
           {currentHighScore > 0 && (
-            <p className="high-score-display">Your High Score: {currentHighScore}</p>
+            <p className="high-score-display">Din Høyeste Poengsum: {currentHighScore}</p>
           )}
-          <p>Press SPACE or click to start the game!</p>
-          <button onClick={handleStartGame}>Start Adventure</button>
+          <p>Trykk MELLOMROM eller klikk for å starte spillet!</p>
+          <button onClick={handleStartGame}>Start Eventyret</button>
         </div>
       </div>
     )

@@ -1,6 +1,6 @@
 # DINO DASH 🦖💨
 
-**An Epic Dinosaur Runner Adventure** built with React and TypeScript, inspired by Chrome's offline dinosaur game!
+**Et Episk Dinosaur Løperspill** bygget med React og TypeScript, inspirert av Chromes offline dinosaur-spill!
 
 ## 🎮 Game Features
 
@@ -44,13 +44,13 @@ npm run build
 npm run preview
 ```
 
-## 🎯 How to Play
+## 🎯 Slik Spiller Du
 
-- **Start**: Click the "Start Game" button or press any key
-- **Jump**: Press the **SPACEBAR** or **CLICK** to make the dinosaur jump
-- **Objective**: Avoid obstacles (cacti and birds) for as long as possible
-- **Scoring**: Your score increases the longer you survive
-- **Difficulty**: Game speed increases every 500 points
+- **Start**: Klikk "Start Spill"-knappen eller trykk en hvilken som helst tast
+- **Hopp**: Trykk **MELLOMROM** eller **KLIKK** for å få dinosauren til å hoppe
+- **Mål**: Unngå hindringer (kaktus og fugler) så lenge som mulig
+- **Poengsum**: Poengsummen din øker jo lenger du overlever
+- **Vanskelighetsgrad**: Spillhastigheten øker hver 500. poeng
 
 ## 🏗️ Project Structure
 
@@ -77,70 +77,70 @@ src/
 - **CSS3** - Custom styling and animations
 - **HTML5 Canvas** - Game rendering
 
-## 🎮 Game Mechanics
+## 🎮 Spillmekanikk
 
-### Dinosaur Movement
-- The dinosaur automatically runs forward
-- Jump height and distance are optimized for smooth gameplay
-- Running animation with leg and arm movement
+### Dinosaur Bevegelse
+- Dinosauren løper automatisk fremover
+- Hoppehøyde og avstand er optimalisert for flytende spillopplevelse
+- Løpeanimasjon med bein- og armbevegelse
 
-### Obstacle Generation
-- **Cacti**: Ground obstacles that appear randomly
-- **Birds**: Flying obstacles at varying heights
-- Obstacle frequency increases with game speed
+### Hindringsgenerering
+- **Kaktus**: Bakkehindringer som dukker opp tilfeldig
+- **Fugler**: Flygende hindringer i varierende høyder
+- Hindringsfrekvensen øker med spillhastigheten
 
-### Collision Detection
-- Precise hitbox detection for fair gameplay
-- Game over when dinosaur hits any obstacle
+### Kollisjonsdeteksjon
+- Presis hitbox-deteksjon for rettferdig spill
+- Spill slutt når dinosauren treffer en hindring
 
-### Progressive Difficulty
-- Base speed: 5 units per frame
-- Speed increases by 0.5 every 500 points
-- Maximum speed capped at 15 units per frame
+### Progressiv vanskelighetsgrad
+- Grunnhastighet: 5 enheter per ramme
+- Hastigheten øker med 0,5 hver 500. poeng
+- Maksimal hastighet begrenset til 15 enheter per ramme
 
-## 🔧 Customization
+## 🔧 Tilpasning
 
-You can easily customize the game by modifying:
+Du kan enkelt tilpasse spillet ved å endre:
 
-- **Game Speed**: Adjust the `gameSpeed` state in `Game.tsx`
-- **Jump Height**: Modify the jump animation in the `jump` function
-- **Obstacle Frequency**: Change timing values in `generateObstacle`
-- **Visual Styling**: Update CSS files for different themes
+- **Spillhastighet**: Juster `gameSpeed`-tilstanden i `Game.tsx`
+- **Hoppehøyde**: Endre hoppeanimasjonen i `jump`-funksjonen
+- **Hindringsfrekvens**: Endre tidsverdier i `generateObstacle`
+- **Visuell Styling**: Oppdater CSS-filer for forskjellige temaer
 
-## 🚀 Performance Features
+## 🚀 Ytelsesfunksjoner
 
-- **Optimized Game Loop**: Uses `requestAnimationFrame` for smooth 60fps
-- **Efficient Rendering**: Only updates necessary components
-- **Memory Management**: Proper cleanup of intervals and event listeners
-- **Responsive Design**: Adapts to different screen sizes
+- **Optimalisert Spillløkke**: Bruker `requestAnimationFrame` for flytende 60fps
+- **Effektiv Rendering**: Oppdaterer kun nødvendige komponenter
+- **Minnehåndtering**: Riktig opprydding av intervaller og hendelseslyttere
+- **Responsivt Design**: Tilpasser seg forskjellige skjermstørrelser
 
-## 🎯 Future Enhancements
+## 🎯 Fremtidige Forbedringer
 
-- [ ] Sound effects and background music
-- [ ] Power-ups and special abilities
-- [ ] Multiple dinosaur characters
-- [ ] High score persistence
-- [ ] Mobile touch controls
-- [ ] Night mode theme
-- [ ] Particle effects
+- [ ] Lydeffekter og bakgrunnsmusikk
+- [ ] Power-ups og spesielle evner
+- [ ] Flere dinosaur-karakterer
+- [ ] Høyeste poengsum vedvarende
+- [ ] Mobil berøringskontroller
+- [ ] Nattmodus-tema
+- [ ] Partikkeleffekter
 
-## 🤝 Contributing
+## 🤝 Bidrag
 
-Feel free to contribute to this project by:
+Du kan gjerne bidra til dette prosjektet ved å:
 
-1. Forking the repository
-2. Creating a feature branch
-3. Making your changes
-4. Submitting a pull request
+1. Forke repositoryet
+2. Opprette en funksjonsgren
+3. Gjøre endringene dine
+4. Sende inn en pull request
 
-## 📄 License
+## 📄 Lisens
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+Dette prosjektet er lisensiert under MIT-lisensen - se LICENSE-filen for detaljer.
 
-## 🎮 Have Fun!
+## 🎮 Kos Deg!
 
-Enjoy playing DINO DASH! Try to beat your high score and challenge your friends. The game gets progressively harder, so stay focused and keep dashing through the prehistoric landscape!
+Kos deg med å spille DINO DASH! Prøv å slå din høyeste poengsum og utfordre vennene dine. Spillet blir gradvis vanskeligere, så hold fokus og fortsett å løpe gjennom det førhistoriske landskapet!
 
 ---
 
-**Happy Dashing! 🦖💨🏃‍♂️**
+**God Løping! 🦖💨🏃‍♂️**

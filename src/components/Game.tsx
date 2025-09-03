@@ -206,13 +206,13 @@ const Game: React.FC<GameProps> = ({ onGameOver, currentUser }) => {
   return (
     <div className="game" ref={gameRef}>
       <div className="game-overlay">
-        <div>Score: {score}</div>
-        <div>High Score: {highScore}</div>
-        <div>Speed: {gameSpeed.toFixed(1)}</div>
+        <div>Poengsum: {score}</div>
+        <div>Høyeste Poengsum: {highScore}</div>
+        <div>Hastighet: {gameSpeed.toFixed(1)}</div>
       </div>
 
       <div className="game-instructions">
-        Press SPACE to jump!
+        Trykk MELLOMROM for å hoppe!
       </div>
 
       <div className="ground"></div>
@@ -237,13 +237,13 @@ const Game: React.FC<GameProps> = ({ onGameOver, currentUser }) => {
 
       {isGameOver && (
         <div className="game-over">
-          <h2>Game Over!</h2>
-          <p>Final Score: {score}</p>
+          <h2>Spill Slutt!</h2>
+          <p>Endelig Poengsum: {score}</p>
           {score >= highScore && score > 0 && (
-            <p className="new-high-score">🎉 New High Score! 🎉</p>
+            <p className="new-high-score">🎉 Ny Høyeste Poengsum! 🎉</p>
           )}
-          <button onClick={resetGame}>Play Again</button>
-          <p className="leaderboard-hint">🏆 Check the leaderboard to see your ranking!</p>
+          <button onClick={resetGame}>Spill Igjen</button>
+          <p className="leaderboard-hint">🏆 Sjekk poengtavlen for å se din plassering!</p>
         </div>
       )}
     </div>

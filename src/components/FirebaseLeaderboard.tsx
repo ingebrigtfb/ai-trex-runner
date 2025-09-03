@@ -35,7 +35,7 @@ const FirebaseLeaderboard: React.FC<FirebaseLeaderboardProps> = ({
         })
       } catch (err) {
         console.error('Error subscribing to global leaderboard:', err)
-        setError('Firebase connection failed. Please check your internet connection.')
+                    setError('Firebase-tilkobling mislyktes. Sjekk internettforbindelsen din.')
         setLoading(false)
       }
 
@@ -50,7 +50,7 @@ const FirebaseLeaderboard: React.FC<FirebaseLeaderboardProps> = ({
         }
       }
     } catch (err) {
-      setError('Failed to load leaderboard data. Please try again.')
+      setError('Kunne ikke laste poengtavledata. Prøv igjen.')
       setLoading(false)
       console.error('Error loading leaderboard:', err)
     }
@@ -95,7 +95,7 @@ const FirebaseLeaderboard: React.FC<FirebaseLeaderboardProps> = ({
         <div className="firebase-leaderboard-content">
           <div className="loading-spinner">
             <div className="spinner"></div>
-            <p>Loading leaderboard...</p>
+            <p>Laster poengtavle...</p>
           </div>
         </div>
       </div>
@@ -106,23 +106,23 @@ const FirebaseLeaderboard: React.FC<FirebaseLeaderboardProps> = ({
     <div className="firebase-leaderboard-modal">
       <div className="firebase-leaderboard-content">
         <div className="leaderboard-header">
-          <h2>🏆 Leaderboard</h2>
-          <p className="leaderboard-note">Showing best score per player</p>
+          <h2>🏆 Poengtavle</h2>
+          <p className="leaderboard-note">Viser beste poengsum per spiller</p>
         </div>
 
         {error && (
           <div className="error-message">
             <p>{error}</p>
             <div className="error-actions">
-              <button onClick={() => loadLeaderboard()}>Retry</button>
-              <button onClick={() => setError(null)} className="dismiss-btn">Dismiss</button>
+              <button onClick={() => loadLeaderboard()}>Prøv Igjen</button>
+              <button onClick={() => setError(null)} className="dismiss-btn">Avvis</button>
             </div>
             {error.includes('Firebase') && (
               <p className="firebase-help">
-                🔧 Firebase connection issue detected. This might be due to:
-                <br />• Network connectivity problems
-                <br />• Firebase project configuration
-                <br />• Firestore database not enabled
+                🔧 Firebase-tilkoblingsproblem oppdaget. Dette kan være på grunn av:
+                <br />• Nettverksforbindelsesproblemer
+                <br />• Firebase-prosjektkonfigurasjon
+                <br />• Firestore-database ikke aktivert
               </p>
             )}
           </div>
@@ -130,22 +130,22 @@ const FirebaseLeaderboard: React.FC<FirebaseLeaderboardProps> = ({
 
         {playerStats && currentUser && (
           <div className="player-stats">
-            <h3>Your Stats</h3>
+            <h3>Dine Statistikk</h3>
             <div className="stats-grid">
               <div className="stat-item">
-                <span className="stat-label">High Score</span>
+                <span className="stat-label">Høyeste Poengsum</span>
                 <span className="stat-value">{playerStats.highScore}</span>
               </div>
               <div className="stat-item">
-                <span className="stat-label">Games Played</span>
+                <span className="stat-label">Spill Spilt</span>
                 <span className="stat-value">{playerStats.totalGames}</span>
               </div>
               <div className="stat-item">
-                <span className="stat-label">Average Score</span>
+                <span className="stat-label">Gjennomsnittlig Poengsum</span>
                 <span className="stat-value">{playerStats.averageScore}</span>
               </div>
               <div className="stat-item">
-                <span className="stat-label">Best Speed</span>
+                <span className="stat-label">Beste Hastighet</span>
                 <span className="stat-value">{playerStats.bestGameSpeed.toFixed(1)}</span>
               </div>
             </div>
@@ -170,17 +170,17 @@ const FirebaseLeaderboard: React.FC<FirebaseLeaderboardProps> = ({
             ))
           ) : (
             <div className="no-scores">
-              <p>No scores available for this view</p>
+              <p>Ingen poengsummer tilgjengelige</p>
             </div>
           )}
         </div>
 
         <div className="leaderboard-footer">
           <p className="last-updated">
-            Last updated: {new Date().toLocaleTimeString()}
+            Sist oppdatert: {new Date().toLocaleTimeString()}
           </p>
           <button onClick={onClose} className="close-btn">
-            Close Leaderboard
+            Lukk Poengtavle
           </button>
         </div>
       </div>
