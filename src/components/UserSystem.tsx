@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import FirebaseLeaderboard from './FirebaseLeaderboard'
 import './UserSystem.css'
 
 interface User {
@@ -12,16 +13,23 @@ interface UserSystemProps {
   currentUser: string | null
   currentScore: number
   onGameOver?: () => void
+  isGameActive?: boolean
 }
 
 const UserSystem: React.FC<UserSystemProps> = ({ 
   onUserChange, 
   currentUser, 
-  currentScore 
+  currentScore,
+  isGameActive
 }) => {
   const [users, setUsers] = useState<User[]>([])
   const [newUserName, setNewUserName] = useState('')
-  const [showLeaderboard, setShowLeaderboard] = useState(false)
+  const [showFirebaseLeaderboard, setShowFirebaseLeaderboard] = useState(false)
+
+  // Debug logging for leaderboard state
+  useEffect(() => {
+    console.log('showFirebaseLeaderboard state changed to:', showFirebaseLeaderboard)
+  }, [showFirebaseLeaderboard])
   const [showUserInput, setShowUserInput] = useState(false)
 
   // Load users from localStorage on component mount
@@ -43,6 +51,13 @@ const UserSystem: React.FC<UserSystemProps> = ({
       updateHighScore(currentUser, currentScore)
     }
   }, [currentScore, currentUser])
+
+  // Close leaderboard when game becomes active
+  useEffect(() => {
+    if (isGameActive) {
+      setShowFirebaseLeaderboard(false)
+    }
+  }, [isGameActive])
 
   const updateHighScore = (userName: string, score: number) => {
     setUsers(prevUsers => {
@@ -77,21 +92,20 @@ const UserSystem: React.FC<UserSystemProps> = ({
       onUserChange(newUserName.trim())
       setNewUserName('')
       setShowUserInput(false)
+      setShowFirebaseLeaderboard(false) // Close leaderboard when starting game
     }
   }
 
   const handleUserChange = () => {
     setShowUserInput(true)
-    setShowLeaderboard(false)
+    setShowFirebaseLeaderboard(false)
   }
 
   const handleLogout = () => {
     onUserChange('')
     setShowUserInput(false)
-    setShowLeaderboard(false)
+    setShowFirebaseLeaderboard(false)
   }
-
-  const sortedUsers = [...users].sort((a, b) => b.highScore - a.highScore)
 
   if (!currentUser) {
     return (
@@ -117,38 +131,21 @@ const UserSystem: React.FC<UserSystemProps> = ({
           </form>
 
           <button 
-            onClick={() => setShowLeaderboard(true)} 
+            onClick={() => {
+              console.log('Leaderboard button clicked! Setting showFirebaseLeaderboard to true')
+              setShowFirebaseLeaderboard(true)
+            }} 
             className="leaderboard-btn"
           >
-            View Leaderboard
+            🏆 View Leaderboard
           </button>
 
-          {showLeaderboard && (
-            <div className="leaderboard-modal">
-              <div className="leaderboard-content">
-                <h3>🏆 Leaderboard</h3>
-                <div className="leaderboard-list">
-                  {sortedUsers.length > 0 ? (
-                    sortedUsers.map((user, index) => (
-                      <div key={user.name} className="leaderboard-item">
-                        <span className="rank">#{index + 1}</span>
-                        <span className="name">{user.name}</span>
-                        <span className="score">{user.highScore}</span>
-                        <span className="date">{user.lastPlayed}</span>
-                      </div>
-                    ))
-                  ) : (
-                    <p className="no-scores">No scores yet. Be the first!</p>
-                  )}
-                </div>
-                <button 
-                  onClick={() => setShowLeaderboard(false)}
-                  className="close-btn"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
+          {showFirebaseLeaderboard && (
+            <FirebaseLeaderboard
+              currentUser={currentUser}
+              currentScore={currentScore}
+              onClose={() => setShowFirebaseLeaderboard(false)}
+            />
           )}
         </div>
       </div>
@@ -167,10 +164,12 @@ const UserSystem: React.FC<UserSystemProps> = ({
             Logout
           </button>
           <button 
-            onClick={() => setShowLeaderboard(true)} 
+            onClick={() => setShowFirebaseLeaderboard(true)} 
             className="leaderboard-btn"
+            disabled={isGameActive}
+            title={isGameActive ? "Leaderboard not available during gameplay" : "View Leaderboard"}
           >
-            Leaderboard
+            🏆 Leaderboard
           </button>
         </div>
       </div>
@@ -206,32 +205,14 @@ const UserSystem: React.FC<UserSystemProps> = ({
         </div>
       )}
 
-      {showLeaderboard && (
-        <div className="leaderboard-modal">
-          <div className="leaderboard-content">
-            <h3>🏆 Leaderboard</h3>
-            <div className="leaderboard-list">
-              {sortedUsers.length > 0 ? (
-                sortedUsers.map((user, index) => (
-                  <div key={user.name} className={`leaderboard-item ${user.name === currentUser ? 'current-user-highlight' : ''}`}>
-                    <span className="rank">#{index + 1}</span>
-                    <span className="name">{user.name}</span>
-                    <span className="score">{user.highScore}</span>
-                    <span className="date">{user.lastPlayed}</span>
-                  </div>
-                ))
-              ) : (
-                <p className="no-scores">No scores yet. Be the first!</p>
-              )}
-            </div>
-            <button 
-              onClick={() => setShowLeaderboard(false)}
-              className="close-btn"
-            >
-              Close
-            </button>
-          </div>
-        </div>
+
+
+      {showFirebaseLeaderboard && (
+        <FirebaseLeaderboard
+          currentUser={currentUser}
+          currentScore={currentScore}
+          onClose={() => setShowFirebaseLeaderboard(false)}
+        />
       )}
     </div>
   )

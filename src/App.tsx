@@ -5,6 +5,7 @@ import './App.css'
 
 function App() {
   const [gameStarted, setGameStarted] = useState(false)
+  const [gameOver, setGameOver] = useState(false)
   const [currentUser, setCurrentUser] = useState<string | null>(null)
   const [currentScore, setCurrentScore] = useState(0)
   const [currentHighScore, setCurrentHighScore] = useState(0)
@@ -12,11 +13,13 @@ function App() {
   const handleGameOver = (finalScore: number) => {
     setCurrentScore(finalScore)
     setGameStarted(false)
+    setGameOver(true)
+    // Game is no longer active when it ends
   }
 
   const handleUserChange = (userName: string) => {
     setCurrentUser(userName)
-    setGameStarted(true)
+    setGameStarted(false) // Don't start game immediately, just select user
     setCurrentScore(0)
     
     // Load user's high score
@@ -34,6 +37,11 @@ function App() {
     }
   }
 
+  const handleStartGame = () => {
+    setGameStarted(true)
+    setGameOver(false)
+  }
+
   if (!currentUser) {
     return (
       <div className="game-container">
@@ -42,6 +50,7 @@ function App() {
           currentUser={currentUser}
           currentScore={currentScore}
           onGameOver={() => {}}
+          isGameActive={false}
         />
       </div>
     )
@@ -55,6 +64,7 @@ function App() {
           currentUser={currentUser}
           currentScore={currentScore}
           onGameOver={() => {}}
+          isGameActive={false}
         />
         <div className="start-screen">
           <h1>DINO DASH</h1>
@@ -64,7 +74,7 @@ function App() {
             <p className="high-score-display">Your High Score: {currentHighScore}</p>
           )}
           <p>Press SPACE or click to start the game!</p>
-          <button onClick={() => setGameStarted(true)}>Start Adventure</button>
+          <button onClick={handleStartGame}>Start Adventure</button>
         </div>
       </div>
     )
@@ -77,6 +87,7 @@ function App() {
         currentUser={currentUser}
         currentScore={currentScore}
         onGameOver={() => {}}
+        isGameActive={gameStarted && !gameOver}
       />
       <Game 
         onGameOver={handleGameOver}

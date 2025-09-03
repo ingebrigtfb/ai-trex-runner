@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "firebase": "^12.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
@@ -19,7 +20,15 @@
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
   },
-  "keywords": ["game", "react", "typescript", "dinosaur", "runner", "dino-dash", "adventure"],
+  "keywords": [
+    "game",
+    "react",
+    "typescript",
+    "dinosaur",
+    "runner",
+    "dino-dash",
+    "adventure"
+  ],
   "author": "",
   "license": "MIT"
 }

@@ -4,6 +4,7 @@ import Obstacle from './Obstacle'
 import Cloud from './Cloud'
 import { useGameLoop } from '../hooks/useGameLoop'
 import { useInputHandler } from '../hooks/useInputHandler'
+import { leaderboardService } from '../services/leaderboardService'
 import './Game.css'
 
 interface GameProps {
@@ -172,7 +173,21 @@ const Game: React.FC<GameProps> = ({ onGameOver, currentUser }) => {
     lastCloudTime.current = 0
   }
 
-  const handleGameOver = () => {
+  const handleGameOver = async () => {
+    // Save score to Firebase if user is logged in
+    if (currentUser && score > 0) {
+      try {
+        await leaderboardService.addScore({
+          playerName: currentUser,
+          score: score,
+          gameSpeed: gameSpeed,
+          obstaclesAvoided: Math.floor(score / 100) // Rough estimate
+        })
+      } catch (error) {
+        console.error('Failed to save score to Firebase:', error)
+      }
+    }
+    
     onGameOver(score)
   }
 
@@ -183,7 +198,7 @@ const Game: React.FC<GameProps> = ({ onGameOver, currentUser }) => {
     if (isGameOver) {
       const timer = setTimeout(() => {
         handleGameOver()
-      }, 2000)
+      }, 1000)
       return () => clearTimeout(timer)
     }
   }, [isGameOver, handleGameOver])
@@ -228,6 +243,7 @@ const Game: React.FC<GameProps> = ({ onGameOver, currentUser }) => {
             <p className="new-high-score">🎉 New High Score! 🎉</p>
           )}
           <button onClick={resetGame}>Play Again</button>
+          <p className="leaderboard-hint">🏆 Check the leaderboard to see your ranking!</p>
         </div>
       )}
     </div>
