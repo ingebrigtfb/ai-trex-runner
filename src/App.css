@@ -1,0 +1,44 @@
+.start-screen {
+  text-align: center;
+  color: #333;
+}
+
+.start-screen h1 {
+  font-size: 48px;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.start-screen p {
+  font-size: 20px;
+  margin-bottom: 30px;
+  color: #34495e;
+}
+
+.start-screen button {
+  background: #e74c3c;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+}
+
+.start-screen button:hover {
+  background: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.high-score-display {
+  color: #f39c12;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 15px 0;
+  text-align: center;
+}

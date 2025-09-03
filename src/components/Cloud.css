@@ -1,0 +1,40 @@
+.cloud {
+  position: absolute;
+  width: 80px;
+  height: 40px;
+  z-index: 1;
+}
+
+.cloud-part {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+}
+
+.cloud-part.main {
+  width: 50px;
+  height: 30px;
+  top: 5px;
+  left: 15px;
+}
+
+.cloud-part.left {
+  width: 35px;
+  height: 25px;
+  top: 8px;
+  left: 0;
+}
+
+.cloud-part.right {
+  width: 40px;
+  height: 28px;
+  top: 6px;
+  right: 0;
+}
+
+.cloud-part.top {
+  width: 30px;
+  height: 20px;
+  top: 0;
+  left: 25px;
+}

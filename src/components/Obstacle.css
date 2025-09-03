@@ -1,0 +1,96 @@
+.obstacle {
+  position: absolute;
+  width: 30px;
+  z-index: 4;
+}
+
+.obstacle.cactus {
+  height: 50px;
+}
+
+.cactus-main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #228B22;
+  border-radius: 4px;
+}
+
+.cactus-branch {
+  position: absolute;
+  background: #228B22;
+  border-radius: 2px;
+}
+
+.cactus-branch.left {
+  left: -8px;
+  top: 15px;
+  width: 8px;
+  height: 20px;
+}
+
+.cactus-branch.right {
+  right: -8px;
+  top: 25px;
+  width: 8px;
+  height: 15px;
+}
+
+.cactus-branch.top {
+  left: 5px;
+  top: -12px;
+  width: 20px;
+  height: 12px;
+}
+
+.obstacle.bird {
+  height: 30px;
+}
+
+.bird-body {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #8B4513;
+  border-radius: 15px;
+}
+
+.bird-wing {
+  position: absolute;
+  top: 5px;
+  width: 15px;
+  height: 8px;
+  background: #A0522D;
+  border-radius: 4px;
+}
+
+.bird-wing.left {
+  left: -10px;
+  transform: rotate(-20deg);
+}
+
+.bird-wing.right {
+  right: -10px;
+  transform: rotate(20deg);
+}
+
+.bird-head {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 20px;
+  height: 20px;
+  background: #8B4513;
+  border-radius: 50%;
+}
+
+.bird-beak {
+  position: absolute;
+  top: 8px;
+  right: -8px;
+  width: 12px;
+  height: 6px;
+  background: #FFD700;
+  border-radius: 0 3px 3px 0;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
