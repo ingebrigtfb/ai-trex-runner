@@ -40,8 +40,8 @@ const Game: React.FC<GameProps> = ({ onGameOver, currentUser }) => {
   const lastObstacleTime = useRef(0)
   const lastCloudTime = useRef(0)
 
-  // Load current user's high score from localStorage
-  useEffect(() => {
+  // Function to refresh high score from localStorage
+  const refreshHighScore = useCallback(() => {
     const savedUsers = localStorage.getItem('trexUsers')
     if (savedUsers) {
       const users = JSON.parse(savedUsers)
@@ -51,6 +51,11 @@ const Game: React.FC<GameProps> = ({ onGameOver, currentUser }) => {
       }
     }
   }, [currentUser])
+
+  // Load current user's high score from localStorage
+  useEffect(() => {
+    refreshHighScore()
+  }, [refreshHighScore])
 
   const checkCollision = useCallback((dinoX: number, dinoY: number, dinoWidth: number, dinoHeight: number) => {
     const dinoRight = dinoX + dinoWidth
@@ -171,6 +176,9 @@ const Game: React.FC<GameProps> = ({ onGameOver, currentUser }) => {
     setCloudId(0)
     lastObstacleTime.current = 0
     lastCloudTime.current = 0
+    
+    // Refresh high score before starting new game
+    refreshHighScore()
   }
 
   const handleGameOver = async () => {
@@ -183,6 +191,9 @@ const Game: React.FC<GameProps> = ({ onGameOver, currentUser }) => {
           gameSpeed: gameSpeed,
           obstaclesAvoided: Math.floor(score / 100) // Rough estimate
         })
+        
+        // Refresh high score after saving to Firebase
+        refreshHighScore()
       } catch (error) {
         console.error('Failed to save score to Firebase:', error)
       }
