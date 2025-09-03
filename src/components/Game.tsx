@@ -209,7 +209,6 @@ const Game: React.FC<GameProps> = ({ onGameOver, currentUser }) => {
           key={obstacle.id}
           x={obstacle.x}
           y={obstacle.y}
-          type={obstacle.type}
         />
       ))}
 

@@ -11,14 +11,13 @@ interface UserSystemProps {
   onUserChange: (userName: string) => void
   currentUser: string | null
   currentScore: number
-  onGameOver: () => void
+  onGameOver?: () => void
 }
 
 const UserSystem: React.FC<UserSystemProps> = ({ 
   onUserChange, 
   currentUser, 
-  currentScore, 
-  onGameOver 
+  currentScore 
 }) => {
   const [users, setUsers] = useState<User[]>([])
   const [newUserName, setNewUserName] = useState('')
