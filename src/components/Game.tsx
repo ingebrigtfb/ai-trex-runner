@@ -139,8 +139,8 @@ const Game: React.FC<GameProps> = ({ onGameOver, currentUser, hoverMode }) => {
   const updateGame = useCallback(() => {
     if (isGameOver) return
 
-    // Update score
-    setScore(prev => prev + 1)
+    // Update score (affected by game speed)
+    setScore(prev => prev + Math.max(1, Math.floor(gameSpeed / 5)))
 
     // Increase game speed over time
     if (score > 0 && score % 500 === 0) {
