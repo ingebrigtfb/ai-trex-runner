@@ -4,12 +4,14 @@ import Obstacle from './Obstacle'
 import Cloud from './Cloud'
 import { useGameLoop } from '../hooks/useGameLoop'
 import { useInputHandler } from '../hooks/useInputHandler'
+import { useHoverHandler } from '../hooks/useHoverHandler'
 import { leaderboardService } from '../services/leaderboardService'
 import './Game.css'
 
 interface GameProps {
   onGameOver: (finalScore: number) => void
   currentUser: string
+  hoverMode: boolean
 }
 
 interface ObstacleData {
@@ -24,7 +26,7 @@ interface CloudData {
   y: number
 }
 
-const Game: React.FC<GameProps> = ({ onGameOver, currentUser }) => {
+const Game: React.FC<GameProps> = ({ onGameOver, currentUser, hoverMode }) => {
   const [score, setScore] = useState(0)
   const [gameSpeed, setGameSpeed] = useState(5)
   const [isGameOver, setIsGameOver] = useState(false)
@@ -35,6 +37,9 @@ const Game: React.FC<GameProps> = ({ onGameOver, currentUser }) => {
   const [obstacleId, setObstacleId] = useState(0)
   const [cloudId, setCloudId] = useState(0)
   const [highScore, setHighScore] = useState(0)
+  
+  // Hover mode state
+  const [isHovering, setIsHovering] = useState(false)
   
   const gameRef = useRef<HTMLDivElement>(null)
   const lastObstacleTime = useRef(0)
@@ -75,33 +80,35 @@ const Game: React.FC<GameProps> = ({ onGameOver, currentUser }) => {
   }, [obstacles])
 
   const jump = useCallback(() => {
-    if (!isJumping && !isGameOver) {
-      setIsJumping(true)
-      setDinoY(0)
-      
-      // Jump animation with better physics - slower descent
-      let jumpPhase = 'up' // 'up' or 'down'
-      const jumpInterval = setInterval(() => {
-        setDinoY(prev => {
-          if (jumpPhase === 'up') {
-            if (prev >= 150) {
-              jumpPhase = 'down'
-              return prev
+    if (!isGameOver && !hoverMode) {
+      // Normal jump mode only when not in hover mode
+      if (!isJumping) {
+        setIsJumping(true)
+        setDinoY(0)
+        
+        // Simple jump animation
+        let jumpPhase = 'up'
+        const interval = setInterval(() => {
+          setDinoY(prev => {
+            if (jumpPhase === 'up') {
+              if (prev >= 150) {
+                jumpPhase = 'down'
+                return prev
+              }
+              return prev + 8
+            } else {
+              if (prev <= 0) {
+                setIsJumping(false)
+                clearInterval(interval)
+                return 0
+              }
+              return prev - 5
             }
-            return prev + 8
-          } else {
-            // Slower descent for more graceful landing
-            if (prev <= 0) {
-              setIsJumping(false)
-              clearInterval(jumpInterval)
-              return 0
-            }
-            return prev - 5
-          }
-        })
-      }, 16)
+          })
+        }, 16)
+      }
     }
-  }, [isJumping, isGameOver])
+  }, [isGameOver, hoverMode, isJumping])
 
   const generateObstacle = useCallback(() => {
     const now = Date.now()
@@ -177,9 +184,13 @@ const Game: React.FC<GameProps> = ({ onGameOver, currentUser }) => {
     lastObstacleTime.current = 0
     lastCloudTime.current = 0
     
+    // Reset hover mode
+    setIsHovering(false)
+    
     // Refresh high score before starting new game
     refreshHighScore()
   }
+
 
   const handleGameOver = async () => {
     // Save score to Firebase if user is logged in
@@ -203,7 +214,25 @@ const Game: React.FC<GameProps> = ({ onGameOver, currentUser }) => {
   }
 
   useGameLoop(updateGame, 16)
+  
+  // Use different input handlers based on mode
   useInputHandler(jump, ' ')
+  useHoverHandler(
+    () => setIsHovering(prev => !prev),
+    ' ',
+    hoverMode
+  )
+
+  // Handle hover state changes
+  useEffect(() => {
+    if (hoverMode) {
+      if (isHovering) {
+        setDinoY(150) // Set to hover height
+      } else {
+        setDinoY(0) // Return to ground
+      }
+    }
+  }, [hoverMode, isHovering])
 
   useEffect(() => {
     if (isGameOver) {
@@ -220,6 +249,11 @@ const Game: React.FC<GameProps> = ({ onGameOver, currentUser }) => {
         <div>Poengsum: {score}</div>
         <div>Høyeste Poengsum: {highScore}</div>
         <div>Hastighet: {gameSpeed.toFixed(1)}</div>
+        {hoverMode && (
+          <div className="hover-indicator">
+            {isHovering ? '🦘 Hovering' : '🏃 Running'}
+          </div>
+        )}
       </div>
 
       <div className="game-instructions">
