@@ -144,7 +144,7 @@ const Game: React.FC<GameProps> = ({ onGameOver, currentUser, hoverMode }) => {
 
     // Increase game speed over time
     if (score > 0 && score % 500 === 0) {
-      setGameSpeed(prev => Math.min(prev + 0.5, 15))
+      setGameSpeed(prev => Math.min(prev + 0.5, 100))
     }
 
     // Update obstacles
